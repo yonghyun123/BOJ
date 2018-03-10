@@ -44,9 +44,6 @@ public class BOJ_9012 {
 	
 	public static void main(String[] args) {
 		
-	
-		
-		
 		sc = new Scanner(System.in);
 
 		int T = sc.nextInt();
