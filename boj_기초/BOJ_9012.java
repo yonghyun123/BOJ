@@ -45,13 +45,11 @@ public class BOJ_9012 {
 	public static void main(String[] args) {
 		
 		sc = new Scanner(System.in);
-
 		int T = sc.nextInt();
 		
 		while (T-- != 0){
 			String input = sc.next();
 			st = new Stack<>();
-			
 			flag = true;
 			
 			for (int i = 0; i < input.length(); i++) {
