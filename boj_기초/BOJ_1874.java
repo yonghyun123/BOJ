@@ -82,30 +82,14 @@ public class BOJ_1874 {
 		}
 		
 		//stack 계산
-		while(true){
+		while(idx <= T){
 			st.push(idx);
 			resultOp.add('+');
-			if(st.empty()) continue;
-			if(st.peek() == tempSt.peek()){
-				st.pop();
-				tempSt.pop();
-				resultOp.add('-');
-				recursionPop(st, tempSt);
-			}
-			else {
-				if(st.contains(tempSt.peek())){
-					flag = false;
-					break;
-				}
-			}
-			
-			if(tempSt.empty()){
-				break;
-			}
+			recursionPop(st, tempSt);
 			idx += 1;
 		}
 		
-		if(flag) {
+		if(st.empty()) {
 			for(Character ch : resultOp){
 				System.out.println(ch);
 			}
@@ -115,10 +99,7 @@ public class BOJ_1874 {
 	}
 	
 	public static void recursionPop(Stack<Integer> st, Stack<Integer> tempSt){
-		if(st.empty()){
-			return;
-		}
-		if(st.peek() == tempSt.peek()){
+		if(!st.empty() && (int)st.peek() == (int)tempSt.peek()){
 			st.pop();
 			tempSt.pop();
 			resultOp.add('-');
