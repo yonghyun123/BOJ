@@ -1,6 +1,8 @@
 package boj_기초;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 /*
@@ -35,8 +37,8 @@ public class BOJ_1260 {
 	public static int [][]graph;
 	public static boolean []visited;
 	
-	public static ArrayList<Integer> result;
-	
+	//data structure-> queue recursion instead of stack
+	public static Queue<Integer> queue;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -46,9 +48,10 @@ public class BOJ_1260 {
 		numOfEdge = sc.nextInt();
 		startNode = sc.nextInt();
 		
-		graph = new int[numOfNode][numOfNode];
-		visited = new boolean[numOfEdge];
-		result = new ArrayList<>();
+		graph = new int[1001][1001]; //여기서 노드 갯수만큼 동적할당했는데 RTE 나는데 이유가 먼지모르겠다
+		visited = new boolean[10001];//여기서 노드 갯수만큼 동적할당했는데 RTE 나는데 이유가 먼지모르겠다
+		queue = new LinkedList<>();
+		
 		
 		//인접행렬 초기화
 		for(int i = 0; i < numOfEdge; i++) {
@@ -61,23 +64,43 @@ public class BOJ_1260 {
 			graph[col-1][row-1] = graph[row-1][col-1] = 1;
 			
 		}
-		result.add(startNode - 1);
-		dfs(startNode - 1);
 		
-		for(int item : result){
-			System.out.print(item + 1 + " ");
+		dfs(startNode - 1); //dfs
+		
+		//bfs 전 방문초기화
+		for(int i = 0; i < numOfNode; i++){
+			visited[i] = false;
 		}
+		System.out.println();
+		bfs(startNode - 1); //bfs
+
 	}
 	
 	public static void dfs(int node){
-		visited[node] = true;
 		
+		visited[node] = true;
+		System.out.print(node+1+" ");
 		for(int i = 0; i < numOfNode; i++){
 			if(!visited[i] && graph[node][i] == 1){
-				result.add(i);
 				dfs(i);
 			}
 		}
 	}
-
+	
+	public static void bfs(int node){
+		visited[node] = true;
+		queue.offer(node);
+		System.out.print(node+1+" ");
+		while(!queue.isEmpty()){
+			int cur = queue.poll();
+			
+			for(int i = 0; i < numOfNode; i++){
+				if(!visited[i] && graph[cur][i] == 1){
+					queue.offer(i);
+					System.out.print(i+1+" ");
+					visited[i] = true;
+				}
+			}
+		}
+	}
 }
