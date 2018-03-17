@@ -32,21 +32,31 @@ public class BOJ_1038 {
 		sc = new Scanner(System.in);
 		N = sc.nextInt();
 		
+	
 		for(int i = 1; i < 10; i++){
-			dfs(i,i,cnt);
+			int digit = 0;
+			dfs(i,i,digit);
+			if(cnt == N){
+//				System.out.println("ddd");
+				break;
+			}
 		}
+		System.out.println(result);
 	}
 	
 	public static void dfs(int curNum, int postNum, int digit){
+		System.out.println(curNum);
 		if(digit == 0){
 			cnt++;
 			if(cnt == N){
+			
 				result = curNum;
 				return;
 			}
 		} else {
 			for(int i = 0; i < postNum; i++){
 				dfs(curNum * 10 + i, i, digit-1);
+				if(cnt == N) return;
 			}
 		}
 	}
