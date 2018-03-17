@@ -22,102 +22,33 @@ import java.util.Scanner;
  */
 public class BOJ_1038 {
 	public static Scanner sc;
-	public static int [][]dpGraph; 
-	
+
 	public static int N;
+	public static int cnt;
 	public static int result;
-	public static int bound;
-	public static int sum;
-	
-	
-	public static int C; // 앞자리 수 column
-	public static int R; // 자리수 row
-	public static boolean flag;  // exit for loop
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		sc = new Scanner(System.in);
 		N = sc.nextInt();
 		
-		dpGraph = new int[10][10];
-		
-		bound = N;
-		result = 0;
-		sum = 0;
-		
-		//dp 표만들기
-		//첫번째 행
-		for(int i = 0; i < 10; i ++){
-			dpGraph[0][i] = 1;
-		}
-		
-		//(1,1) (2,2) (3,3) ...
 		for(int i = 1; i < 10; i++){
-			dpGraph[i][i] = 1;
+			dfs(i,i,cnt);
 		}
-		
-		//full graph
-		for(int i = 1; i < 10; i++){
-			for(int j = i + 1; j < 10; j++){
-				int sum = 0;
-				for(int k = i - 1; k < j; k++){
-					sum += dpGraph[i-1][k];
-				}
-				dpGraph[i][j] = sum;
-			}
-		}
-		// print graph
-		/*
-		for(int i = 0; i < 10; i++){
-			for(int j = 0; j < 10; j++){
-				System.out.print(dpGraph[i][j]+ " ");
-			}
-			System.out.println();
-		}
-		*/
-		
-		//calculate boundary
-		for(int i = 0; i < 10; i++){
-			for(int j = i; j < 10; j++){
-				if(bound >= dpGraph[i][j]) { 
-					bound -= dpGraph[i][j];
-				}else{
-					C = j;
-					R = i;
-					flag = true;
-					break;
-				}
-			}
-			if(flag){
-				break;
-			}
-		}
-		dfs(C, R+1, C, C*10);
-		System.out.println(sum);
 	}
 	
-	public static void dfs(int C, int R, int prevNum, int curNum){
-		if(result == bound){
-			sum = curNum;
-			System.out.println(sum);
-			return;
-		}
-		
-		if(R == 1){
-			result += 1;
-			return;
-		}
-
-		for(int i = 0; i < C; i++){
-
-			if(i < prevNum){
-				System.out.println("ddd");
-				dfs(C, R - 1, i, (curNum+(i * (int)Math.pow(10, R-2))));
+	public static void dfs(int curNum, int postNum, int digit){
+		if(digit == 0){
+			cnt++;
+			if(cnt == N){
+				result = curNum;
+				return;
 			}
-			
-			if(result == bound){
-				break;
+		} else {
+			for(int i = 0; i < postNum; i++){
+				dfs(curNum * 10 + i, i, digit-1);
 			}
 		}
 	}
+	
 }
