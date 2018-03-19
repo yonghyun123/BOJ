@@ -24,32 +24,40 @@ public class BOJ_1038 {
 	public static Scanner sc;
 
 	public static int N;
-	public static int cnt;
-	public static int result;
+	public static long cnt;
+	public static long result;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		sc = new Scanner(System.in);
 		N = sc.nextInt();
+		cnt = 0;
 		
-	
-		for(int i = 1; i < 10; i++){
-			int digit = 0;
-			dfs(i,i,digit);
-			if(cnt == N){
-//				System.out.println("ddd");
-				break;
-			}
+		if(N > 1022){
+			result = -1;
+		}else if(N > 0){
+			start();	
 		}
 		System.out.println(result);
+
 	}
-	
-	public static void dfs(int curNum, int postNum, int digit){
-		System.out.println(curNum);
+	public static void start(){
+		int digit = 0;
+		while(true){
+			for(int i = 1; i < 10; i ++){
+				dfs(i,i,digit);
+				if(cnt == N){
+					return ;
+				}
+			}
+			digit += 1;
+		}
+	}
+	public static void dfs(long curNum, int postNum, int digit){
+		
 		if(digit == 0){
 			cnt++;
 			if(cnt == N){
-			
 				result = curNum;
 				return;
 			}
@@ -60,5 +68,4 @@ public class BOJ_1038 {
 			}
 		}
 	}
-	
 }
