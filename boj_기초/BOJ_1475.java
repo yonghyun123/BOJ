@@ -69,8 +69,6 @@ public class BOJ_1475 {
 			System.out.println((sixNine+1) / 2);
 		} else {
 			System.out.println(max);
-		}
-		
+		}	
 	}
-
 }
