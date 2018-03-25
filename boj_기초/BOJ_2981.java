@@ -61,7 +61,7 @@ public class BOJ_2981 {
 		Collections.sort(input);
 		dividend = input.get(input.size()-1) - input.get(0);
 		
-		for(int i = 2; i <= dividend/2; i++){
+		for(int i = 2; i <= dividend; i++){
 			// 나누어떨어지면 약수
 			if(dividend % i == 0){
 				divider.add(i);
