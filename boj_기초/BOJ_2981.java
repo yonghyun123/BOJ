@@ -38,9 +38,11 @@ public class BOJ_2981 {
 	public static Scanner sc;
 	public static int T;
 	public static ArrayList<Integer> input;
-	public static Stack<Integer> st;
-	public static boolean flag;
+	public static int dividend;
+	public static boolean flag = false;
+	
 	public static ArrayList<Integer> result;
+	public static ArrayList<Integer> divider;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -48,39 +50,40 @@ public class BOJ_2981 {
 		sc = new Scanner(System.in);
 		T = sc.nextInt();
 		input = new ArrayList<>();
-		st = new Stack<Integer>();
 		result = new ArrayList<>();
+		divider = new ArrayList<>();
 		
 		for(int i = 0; i < T; i++){
 			int temp = sc.nextInt();
 			input.add(temp);
 		}
 		
+		Collections.sort(input);
+		dividend = input.get(input.size()-1) - input.get(0);
 		
-		for(int i = 2; i <= (int) Collections.min(input); i++){
+		for(int i = 2; i <= dividend/2; i++){
+			// 나누어떨어지면 약수
+			if(dividend % i == 0){
+				divider.add(i);
+			}
+		}
+		
+		for(Integer item : divider){
 			flag = false;
-			for(int j = 0; j < input.size(); j++){
-				int reminder = input.get(j) % i;
-				if(st.isEmpty()){
-					st.push(reminder);
-				}
-				else if((int)st.peek() != reminder){
+			int reminder = input.get(0) % item;
+			
+			for(int i = 1; i < input.size(); i++){
+				if(input.get(i) % item != reminder){
 					flag = true;
 					break;
 				}
-				else {
-					st.push(reminder);
-				}
 			}
 			if(!flag){
-				result.add(i);
+				result.add(item);
 			}
-			st.removeAllElements();
 		}
-		
-		for(Integer item : result){
-			System.out.print(item+" ");
+		for(Integer result : result){
+			System.out.print(result + " ");
 		}
-
 	}
 }
