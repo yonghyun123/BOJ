@@ -128,6 +128,8 @@ Node* AddAfter(Node* node, int val) {
 
   node->next->prev = newNode;
   node->next = newNode;
+
+
   return newNode;
 }
 
@@ -141,6 +143,7 @@ Node* AddHead(List* list, int val) {
 
   list->head->next->prev = node;
   list->head->next = node;
+  
 
 
 
@@ -159,7 +162,6 @@ Node* AddTail(List* list, int val) {
   list->head->prev->next = node;
   list->head->prev = node;
   return node;
-
 }
 
 // 주어진 Node 삭제
