@@ -31,39 +31,48 @@ import java.util.Scanner;
 public class BOJ_1782 {
 	
 	public static Scanner sc;
-	public static int N1,N2;
+	public static long N1,N2;
 	public static int cnt;
 	public static boolean flag;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		sc = new Scanner(System.in);
-		N1 = sc.nextInt();
-		N2 = sc.nextInt();
+		N1 = sc.nextLong();
+		N2 = sc.nextLong();
 		cnt = 0;
 		flag = true;
+		String temp1 = Long.toString(N1);
+		String temp2 = Long.toString(N2);
 		
-		for(int i = N1; i <= N2; i++){
-			String str1 = Integer.toString(i);
-			flag = true;
-			for(int j = 0; j < (str1.length()+1)/2; j++){
+		int digit1 = temp1.length() - 1; //n1의 자리수
+		int digit2 = temp2.length(); //n2의 자리수
+		
+		int right = (int) Math.pow(10, (int)(Math.log(N2))); //right
+		int left = (int) Math.pow(10, (int)(Math.log(N1))); //left
+		
+		for(int i = right; i <= N2; i++){
+			String str1 = Long.toString(i);
 			
-				
-				if(str1.charAt(j) == '0' || str1.charAt(j) == '1' || str1.charAt(j) == '8'){
-					if(str1.charAt(j) == str1.charAt(str1.length()-1-j)){
-						continue;
-					} else { 
-						flag = false;
-						break;
+			flag = true;
+			if(str1.charAt(0) =='3' || str1.charAt(0) =='4' ||str1.charAt(0) =='6' ||str1.charAt(0) =='7' ||str1.charAt(0) =='9'){
+				continue;
+			}
+			for(int j = 0; j < (int)(str1.length()+1)/2; j++){
+
+				if(str1.charAt(j) == '2' && str1.charAt(str1.length()-1-j) == '5'){
+					continue;
+				}
+				else if(str1.charAt(j) == '5' && str1.charAt(str1.length()-1-j) == '2'){
+					continue;
+				}
+				else if(str1.charAt(j) == '0' || str1.charAt(j) == '1' || str1.charAt(j) == '8'){
+					if(str1.charAt(j) != str1.charAt(str1.length()-j-1)){
+						flag = false; break;
 					}
-					
-				} else if(str1.charAt(j) =='2' && str1.charAt(str1.length()-1-j) == '5'){
-					continue;
-				} else if(str1.charAt(j) =='5' && str1.charAt(str1.length()-1-j) == '2'){
-					continue;
-				} else {
-					flag = false;
-					break;
+				}
+				else { 
+					flag = false; break;
 				}
 			}
 			if(flag){
