@@ -5,7 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class babygin_ES {
+public class Babygin_ES {
+	
 	public static Scanner sc;
 	public static ArrayList<Integer> N1;
 	
@@ -30,21 +31,21 @@ public class babygin_ES {
 			}
 			System.out.println();
 		}
-
 		//순열만들기	
 	}
+	
 	public static void perm(ArrayList<ArrayList<Integer>> perm, ArrayList<Integer> arr, int N, int depth){
+		
 		if(N == depth){
 			ArrayList<Integer>temp = new ArrayList<>(arr);
 			perm.add(temp);
 			return;
 		}
+		
 		for(int i = depth; i < N; i++){
 			Collections.swap(arr, i, depth);
 			perm(perm, arr, N, depth+1);
 			Collections.swap(arr, i, depth);
 		}
 	}
-	
-
 }
