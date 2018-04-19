@@ -37,6 +37,8 @@ public class BOJ_1782 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		long st1 = System.currentTimeMillis();
+		
 		sc = new Scanner(System.in);
 		N1 = sc.nextLong();
 		N2 = sc.nextLong();
@@ -45,19 +47,18 @@ public class BOJ_1782 {
 		String temp1 = Long.toString(N1);
 		String temp2 = Long.toString(N2);
 		
-		int digit1 = temp1.length() - 1; //n1의 자리수
+		int digit1 = temp1.length() ; //n1의 자리수
 		int digit2 = temp2.length(); //n2의 자리수
 		
 		int right = (int) Math.pow(10, (int)(Math.log(N2))); //right
 		int left = (int) Math.pow(10, (int)(Math.log(N1))); //left
 		
-		for(int i = right; i <= N2; i++){
+		for(long i = N1; i <= N2; i++){
 			String str1 = Long.toString(i);
 			
+			
 			flag = true;
-			if(str1.charAt(0) =='3' || str1.charAt(0) =='4' ||str1.charAt(0) =='6' ||str1.charAt(0) =='7' ||str1.charAt(0) =='9'){
-				continue;
-			}
+			if(isCorrect(str1.length(), str1));
 			for(int j = 0; j < (int)(str1.length()+1)/2; j++){
 
 				if(str1.charAt(j) == '2' && str1.charAt(str1.length()-1-j) == '5'){
@@ -76,11 +77,35 @@ public class BOJ_1782 {
 				}
 			}
 			if(flag){
-//				System.out.println(i);
+				System.out.println(i);
 				cnt += 1;
 			}
 		}
 		System.out.println(cnt);
+		long st2 = System.currentTimeMillis();
+		System.out.println(st2-st1);
+		
+	}
+	
+	public static boolean isCorrect(int digit, String str){
+		// 다시 풀어야해
+		if(digit == 0){
+			return true;
+		}
+		if(str.substring(0,0) != "1"){
+			return false;
+		} else if(str.substring(0,0) != "2"){
+			return false;
+		} else if(str.substring(0,0) != "0"){
+			return false;
+		} else if(str.substring(0,0) != "8"){
+			return false;
+		} else if(str.substring(0,0) != "5"){
+			return false;
+		} else {
+			isCorrect(digit - 1, str.substring(1,str.length()));
+			return true;
+		}
 		
 	}
 
