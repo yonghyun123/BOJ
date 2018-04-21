@@ -1,4 +1,4 @@
-package sw_expert.Arrary1.Median;
+package sw_expert.Array1.Median;
 
 import java.util.Scanner;
 

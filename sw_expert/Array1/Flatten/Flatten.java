@@ -1,4 +1,4 @@
-package sw_expert.Arrary1.Flatten;
+package sw_expert.Array1.Flatten;
 
 import java.util.Arrays;
 import java.util.Scanner;

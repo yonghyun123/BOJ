@@ -1,4 +1,4 @@
-package sw_expert.Arrary1;
+package sw_expert.Array1;
 
 import java.util.Scanner;
 

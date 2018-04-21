@@ -1,4 +1,4 @@
-package sw_expert.Arrary1.View;
+package sw_expert.Array1.View;
 
 import java.util.Scanner;
 
