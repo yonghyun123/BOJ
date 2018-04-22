@@ -8,6 +8,7 @@ public class Subset_BitOp {
 		int n = arr.length;
 		
 		for(int i = 0; i < (1<<n); i++){
+			System.out.println("i="+i);
 			for(int j = 0; j < n; j++){
 //				System.out.println("i ="+i);
 //				System.out.println("j ="+j);
