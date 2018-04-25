@@ -17,6 +17,7 @@ public class BOJ_2438 {
 			}
 			System.out.println();
 		}
+		System.out.println(31>>4);
 	}
 
 }
