@@ -17,28 +17,32 @@ public class Ladder1 {
 		
 		while(T++ < 10){
 			int tmpT = sc.nextInt();
-			int [][]board = new int[100][100];
-			visited = new boolean[100][100];
+			int [][]board = new int[10][10];
+			visited = new boolean[10][10];
 			finalDes = 0;
 			result = 0;
 			
-			for(int i = 0; i < 100; i++){
-				for(int j = 0; j < 100; j++){
+			for(int i = 0; i < 10; i++){
+				for(int j = 0; j < 10; j++){
 					board[i][j] = sc.nextInt();
 				}
 			}
 			
-			for(int i = 0; i < 100; i++){
+			for(int i = 0; i < 10; i++){
 				finalDes = 0;
-				if(board[0][i] == 1 && i == 67){
-					System.out.println("i="+i);
+				if(board[0][i] == 1 && !visited[0][i]){
+					
 					dfs(board, 0, i);
+					System.out.println(finalDes);
+					System.out.println("i"+i);
+					if(finalDes == 2){
+						result = i;
+						System.out.println("여기들어와?"+i);
+						break;
+					}
 				}
-				if(finalDes == 2){
-					result = i;
-					break;
-				}
-				visited = new boolean[100][100];
+
+				visited = new boolean[10][10];
 			}
 
 
@@ -48,9 +52,10 @@ public class Ladder1 {
 	}
 	
 	public static void dfs(int [][]board, int curRow, int curCol){
+		if(finalDes != 0) return;
 		visited[curRow][curCol] = true;
 		System.out.println("row:"+curRow+", "+"col:"+curCol);
-		if(curRow == 99){
+		if(curRow == 9){
 			finalDes = board[curRow][curCol];
 			System.out.println(finalDes);
 			return;
@@ -58,8 +63,11 @@ public class Ladder1 {
 		for(int i = 0; i < 3; i++){
 			int nextRow = dX[i] + curRow;
 			int nextCol = dY[i] + curCol;
-			if(nextRow < 0 || nextRow > 99 || nextCol < 0 || nextCol > 99) continue;
-			if(!visited[nextRow][nextCol] && board[nextRow][nextCol] == 1){
+			if(finalDes != 0){
+				return;
+			}
+			if(nextRow < 0 || nextRow > 9 || nextCol < 0 || nextCol > 9) continue;
+			if(!visited[nextRow][nextCol] && board[nextRow][nextCol] != 0){
 				dfs(board, nextRow, nextCol);
 			}
 			if(finalDes != 0){
