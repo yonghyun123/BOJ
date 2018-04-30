@@ -49,9 +49,7 @@ public class Ladder1 {
 	}
 	
 	public static void dfs(int [][]board, int curRow, int curCol){
-//		if(finalDes != 0){
-//			return;
-//		}
+
 		visited[curRow][curCol] = true;
 //		System.out.println("row:"+curRow+", "+"col:"+curCol);
 		if(curRow == 99){
