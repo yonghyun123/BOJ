@@ -41,7 +41,19 @@ Company는 회사 이름입니다.
 사원 이름 목록과 동일한 순서로 이메일 주소 목록을 출력하여야 합니다.
 이메일 주소 사이의 구분자는 쉼표와 공백 한 개입니다.
 (예 doej@exmp.com, parkp@ exmp.com)
- * 
+ * MIDASIT
+John Doe, Peter Parker, Mary Jane Watson-Parker, James Doe, John Elvis Doe, Jane Doe, Penny Parker
+
+출력
+doej@midasit.com, parkerp@midasit.com, watsonparkerm@midasit.com, doej2@midasit.com, doej3@midasit.com, doej4@midasit.com, parkerp2@midasit.com
+
+<예2>
+입력
+MIDASIT
+,   John   Doe  ,    Peter Parker,  Mary  Jane      Watson-Parker  ,  James   Doe,  John Elvis Doe,    Jane    Doe ,  Penny Parker  ,
+
+출력
+doej@midasit.com, parkerp@midasit.com, watsonparkerm@midasit.com, doej2@midasit.com, doej3@midasit.com, doej4@midasit.com, parkerp2@midasit.com
  * 
  */
 public class AutoMailNaming {

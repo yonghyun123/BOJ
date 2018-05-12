@@ -22,6 +22,20 @@ import java.util.regex.Pattern;
 
 출력은 표준 출력(stdout)으로 이루어집니다.
 아이디와 패스워드가 생성규칙에 모두 부합한다면 “T” 부합하지 않는다면 “F”를 출력합니다.
+
+tiger1
+monkey09
+
+출력
+T
+
+<예2>
+입력
+rabbit
+monkey
+
+출력
+F
  */
 public class SafeUserInfo {
 	public static Scanner sc;
