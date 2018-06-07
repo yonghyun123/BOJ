@@ -29,7 +29,7 @@ public class Ex03 {
 	public static int N;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int []temp = {9};
+		int []temp = {9,3};
 		System.out.println(solution(16,temp,2));
 		System.out.println(result);
 	}
@@ -70,9 +70,7 @@ public class Ex03 {
 			copy[i] = visited[i];
 		}
 		spread(copy, W, pos);
-		for(int i = 0; i < visited.length; i++){
-			System.out.print(copy[i]+" ");
-		}
+
 		if(isTrue(copy) && depth < result){
 			result = depth;
 			return;
@@ -82,14 +80,10 @@ public class Ex03 {
 
 		for(int i = 0; i < copy.length; i++){
 			if(!copy[i]){
-				System.out.println(depth);
 				dfs(depth+1, i, copy);
-				
 			}
 		}
-	
 	}
-	
 	public static void spread(boolean[] visited, int w, int pos){
 		
 		for(int i = pos-w; i <= pos+w; i++){
