@@ -9,7 +9,7 @@ public class BOJ_14502 {
 	// 우 하 좌 상
 	public static int []dRow = {0, 1, 0, -1}; //delta 행 
 	public static int []dCol = {1, 0, -1, 0}; //delta 열
-	
+	public static int result = 987654321; 
 	public static boolean [][]visited;
 	
 
@@ -24,9 +24,10 @@ public class BOJ_14502 {
 				{0,0,0,0}
 		};
 		dfs(board,0);
+		System.out.println(result);
 		
 	}
-	public static void spreadVirus(int [][]board){
+	public static int spreadVirus(int [][]board){
 		int tempCnt = 0;
 		Queue<int[]> bfsQ = new LinkedList<>();
 		visited = new boolean[4][4];
@@ -71,27 +72,21 @@ public class BOJ_14502 {
 		for(int i = 0; i < 4; i ++){
 			for(int j = 0; j < 4; j++){
 				if(tempBoard[i][j] == 2) tempCnt += 1;
-				System.out.print(tempBoard[i][j]);
+//				System.out.print(tempBoard[i][j]);
 			}
-			System.out.println();
+//			System.out.println();
 		}
-		System.out.println();
-		System.out.println(tempCnt);
+//		System.out.println(tempCnt);
+		return tempCnt;
+		
+		
 
 	}
 	
 	public static void dfs(int [][]board, int cnt){
 		
 		if(cnt == 3){
-			//dfs check code
-//			for(int i = 0; i < board.length; i++){
-//				for(int j = 0; j < board[i].length; j++){
-//					System.out.print(board[i][j]);
-//				}
-//				System.out.println();
-//			}
-//			System.out.println();
-			spreadVirus(board);
+			result = result < spreadVirus(board) ?  result : spreadVirus(board) ;
 			return;
 		}
 		
