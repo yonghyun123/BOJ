@@ -14,7 +14,7 @@ public class Calculator {
 		// TODO Auto-generated method stub
 		sc = new Scanner(System.in);
 		
-		Stack<Character> st = new Stack<>();
+
 		Map<Character, Integer> priority = new HashMap<>();
 		priority.put('(', 0);
 		priority.put('+', 1);
@@ -23,7 +23,9 @@ public class Calculator {
 		priority.put('/', 2);
 		
 		while(T++ < 10){
-//			int N = sc.nextInt();
+			int N = sc.nextInt();
+			Stack<Character> st = new Stack<>();
+			int result = 0;
 			String input = sc.next();
 			String postStr = "";
 			for(int i = 0; i < input.length(); i++){
@@ -52,9 +54,38 @@ public class Calculator {
 				}
 			}
 			
-			System.out.println(postStr);
+			//stack에서 빠져나오지 못한 연산자 처리
+			while(!st.isEmpty()){
+				postStr += st.peek();
+				st.pop();
+			}
+			result = postCalc(postStr);  
+			System.out.println("#"+T+" "+result);
 			
 		}
+	}
+	public static int postCalc(String postStr){
+		int answer = 0;
+		Stack<Integer> st = new Stack<>();
+		
+		for(int i = 0; i < postStr.length(); i++){
+			if(postStr.charAt(i) == '*' || postStr.charAt(i) == '/' || postStr.charAt(i) == '+' || postStr.charAt(i) == '-' ){
+				int op1 = st.pop();
+				int op2 = st.pop();
+				
+				switch(postStr.charAt(i)){
+					case '*': st.push(op2 * op1); break;
+					case '/': st.push(op2 / op1); break;
+					case '+': st.push(op2 + op1); break;
+					case '-': st.push(op2 - op1); break;
+					default: break;
+				}
+			} else {
+				st.push(Character.getNumericValue(postStr.charAt(i)));
+			}
+		}
+		
+		return st.peek();
 	}
 
 }
