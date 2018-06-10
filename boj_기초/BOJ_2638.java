@@ -13,6 +13,7 @@ public class BOJ_2638 {
 	public static boolean[][] visited;
 	public static ArrayList<int[]> storePos;
 	public static boolean cntFlag;
+	public static int result = 0;
 	//delta 우하좌상
 	public static int[] dRow = {0,1,0,-1};
 	public static int[] dCol = {1,0,-1,0};
@@ -21,7 +22,7 @@ public class BOJ_2638 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		sc = new Scanner(System.in);
-		storePos = new ArrayList<>();
+		
 		
 		Row = sc.nextInt();
 		Col = sc.nextInt();
@@ -36,16 +37,11 @@ public class BOJ_2638 {
 		}
 		
 		bfs(0,0);
-		
-		for(int i = 0; i < Row; i++){
-			for(int j = 0; j < Col; j++){
-				System.out.print(board[i][j]);
-			}
-			System.out.println();
-		}
+
 		
 		//main logic
 		while(!isFillZero()){
+			storePos = new ArrayList<>();
 			for(int i = 0; i < Row; i++){
 				for(int j = 0; j < Col; j++){
 					int checkCnt = 0;
@@ -69,42 +65,52 @@ public class BOJ_2638 {
 							int []promising = {i,j};
 							storePos.add(promising);
 						}
-
 					}
 				}
 			}
+			
 			/* 전체 탐색 끝
 			 * 1. 다시 bfs (0 -> -1)
 			 * 2. 치즈녹이기 (1 -> -1)
 			 * 
 			 */
-		
 			
-		}
-			
-		for(int[] item : storePos){
-			System.out.println(item[0]+","+item[1]);
-		}
+			for(int[] item : storePos){
+				board[item[0]][item[1]] = -1;
+			}
+			bfs(0,0);
 		
-		
+			result += 1;
+		}
+		System.out.println(result);
 	}
 	public static boolean isFillZero(){
+//		for(int i = 0; i < Row; i++){
+//			for(int j = 0; j < Col; j++){
+//				System.out.print(board[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
+//		
 		for(int i = 0; i < Row; i++){
 			for(int j = 0; j < Col; j++){
 				if(board[i][j] != -1) return false;
 			}
 		}
-		
 		return true;
 		
 	}
 	
 	public static void bfs(int row, int col){
+		boolean[][] copy = new boolean[Row][Col];
+
+		
 		Queue<int[]> bfsQ = new LinkedList<>();
 		int []temp = {row,col};
 		bfsQ.add(temp);
-		//굳이 방문 안써도 될것같은데
-//		visited[row][col] = true;
+		copy[row][col] = true;
+		board[row][col] = -1;
 		
 		while(!bfsQ.isEmpty()){
 			int curR = bfsQ.peek()[0];
@@ -115,8 +121,10 @@ public class BOJ_2638 {
 				int nextR = dRow[i] + curR;
 				int nextC = dCol[i] + curC;
 				if(nextR < 0 || nextR >= Row || nextC < 0 || nextC >= Col) continue;
-				if(board[nextR][nextC] == 0){
+				if(copy[nextR][nextC]) continue;
+				if(board[nextR][nextC] == 0 || board[nextR][nextC] == -1){
 					board[nextR][nextC] = -1;
+					copy[nextR][nextC] = true;
 					int []tempPosition = {nextR, nextC};
 					bfsQ.add(tempPosition);
 				}
