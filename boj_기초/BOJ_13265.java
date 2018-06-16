@@ -8,8 +8,8 @@ public class BOJ_13265 {
 	
 	public static Scanner sc;
 	public static int T;
-	public static final int RED = -1;
-	public static final int BLUE = 1;
+	public static final int RED = 1;
+	public static final int BLUE = 2;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -26,7 +26,7 @@ public class BOJ_13265 {
 			for(int j = 0; j < edge; j++){
 				int row = sc.nextInt();
 				int col = sc.nextInt();
-				
+				if(row == col) continue;
 				board[row-1][col-1] = board[col-1][row-1] = 1;
 			}
 			//print board
@@ -50,36 +50,29 @@ public class BOJ_13265 {
 		Queue<Integer> q = new LinkedList<>();
 		boolean[] visited = new boolean[node];
 		int[] promising = new int[node];
-		int palette = color;
-
-		promising[startNode] = palette;
+	
+		promising[startNode] = color;
+		visited[startNode] = true;
 		q.add(startNode);
 		
 		while(!q.isEmpty()){
 			int curNode = q.poll();
-			visited[curNode] = true;
-			if(promising[curNode] == 0){
-				promising[curNode] = RED;
-				palette = BLUE;
-			}
-			if(promising[curNode] == RED){
-				palette = BLUE;
-			} else if(promising[curNode] == BLUE){
-				palette = RED;
-			}
-			
 			for(int i = 0; i < node; i++){
 				// add element into queue
 				// if linked two node is promising
-				
-				if(board[curNode][i] == 1 && promising[i] != 0){
-					if(promising[i] != palette) return false;
-				} else if(board[curNode][i] == 1){
-					promising[i] = palette;
-					q.add(i);
+				if(board[curNode][i] == 1 &&  (promising[i] != promising[curNode]) ){
+					if(!visited[i]){
+						if(promising[curNode] == RED) promising[i] = BLUE;
+						else if(promising[curNode] == BLUE) promising[i] = RED;
+						visited[i] = true;
+						q.add(i);
+					}
+				} else if(board[curNode][i] == 1 &&  (promising[i] == promising[curNode])) {
+					return false;
 				}
-	
+
 			}
+			
 		}
 		return true;
 	}
