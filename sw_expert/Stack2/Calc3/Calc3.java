@@ -16,6 +16,7 @@ public class Calc3 {
 		
 
 		Map<Character, Integer> priority = new HashMap<>();
+//		stack 안에서 우선순위 여는 괄호가 제일 낮다
 		priority.put('(', 0);
 		priority.put('+', 1);
 		priority.put('-', 1);
