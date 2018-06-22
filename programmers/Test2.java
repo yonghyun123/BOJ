@@ -25,14 +25,6 @@ public class Test2 {
 					if(checkStr.charAt(k) != checkStr.charAt(checkStr.length()-k-1)) break;
 					if(k == (checkStr.length()/2 - 1) ) return checkStr.length();
 				}
-				
-//				StringBuffer sb = new StringBuffer();
-//				sb.append(checkStr);
-//				revCheStr = sb.reverse().toString();
-				
-//				if(checkStr.equals(revCheStr)){
-//					return checkStr.length();
-//				}
 			}
 		}
 		return 1;
