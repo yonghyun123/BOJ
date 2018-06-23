@@ -29,3 +29,9 @@ class TreeNode{
 		this.right = null;
 	}
 }
+
+class BinarySearchTree{
+	private TreeNode root = new TreeNode();
+	
+	
+}
