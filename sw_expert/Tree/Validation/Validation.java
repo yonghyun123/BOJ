@@ -13,7 +13,7 @@ public class Validation {
 		 
 		 while(T++ < 10){
 			 BinaryTree rootTree = new BinaryTree();
-			 ArrayList<String> resultList = new ArrayList<>();
+			 ArrayList<String> resultList;
 			 int result = 1;
 			 
 			 int numOfNode = sc.nextInt();
