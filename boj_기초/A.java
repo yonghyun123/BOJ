@@ -25,18 +25,17 @@ interface E extends B{
 	public void E2();
 }
 
-public class A extends D{
-
-	@Override
-	public void B1() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void B2() {
-		// TODO Auto-generated method stub
-		
+//이걸 꼭 기억하자
+public class A {
+	
+	public static void main(String[] args){
+		boolean[] visited = new boolean[5];
+		int[] board = new int[4];
+		test(visited);
+		System.out.println(visited[0]);
 	}
 	
+	public static void test(boolean[] copy){
+		copy[0] = true;
+	}
 }
