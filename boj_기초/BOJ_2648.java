@@ -12,13 +12,12 @@ public class BOJ_2648 {
 	public static int[] dRow = { 0, 1, 0, -1 };
 	public static int[] dCol = { 1, 0, -1, 0 };
 	public static int rainH = 0;
-	public static boolean[][] visited;
 
 	public static void main(String[] args) {
 		N = sc.nextInt();
 		int[][] board = new int[N][N];
 		int[][] copy = new int[N][N];
-		visited = new boolean[N][N];
+		boolean[][] visited = new boolean[N][N];
 		
 		int max = -9999999;
 
@@ -39,7 +38,7 @@ public class BOJ_2648 {
 				for(int j = 0; j < N; j++){
 					if(!visited[i][j] && copy[i][j] > 0){
 						int[] temp = {i,j};
-						safeZone += bfs(temp, copy);
+						safeZone += bfs(temp, copy, visited);
 					}
 				}
 			}
@@ -77,7 +76,7 @@ public class BOJ_2648 {
 		return true;
 	}
 
-	public static int bfs(int[] start, int[][] board) {
+	public static int bfs(int[] start, int[][] board, boolean[][] visited) {
 		Queue<int[]> q = new LinkedList<>();
 
 		q.add(start);

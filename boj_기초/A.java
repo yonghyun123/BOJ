@@ -31,11 +31,12 @@ public class A {
 	public static void main(String[] args){
 		boolean[] visited = new boolean[5];
 		int[] board = new int[4];
-		test(visited);
-		System.out.println(visited[0]);
+		test(visited,board);
+		System.out.println(visited[0]+","+ board[0]);
 	}
 	
-	public static void test(boolean[] copy){
+	public static void test(boolean[] copy, int[] board){
 		copy[0] = true;
+		board[0]= 100;
 	}
 }
