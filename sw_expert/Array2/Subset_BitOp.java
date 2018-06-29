@@ -7,6 +7,7 @@ public class Subset_BitOp {
 		int[] arr = {1,2,3,4,5,6};
 		int n = arr.length;
 		
+		// i = 부분집합 갯수만큼
 		for(int i = 0; i < 8; i++){
 //			System.out.println("i="+i);
 			for(int j = 0; j < n; j++){
@@ -21,7 +22,7 @@ public class Subset_BitOp {
 			}
 			System.out.println();
 		}
-		System.out.println(1<<1);
+		System.out.println(32&(1<<5));
 		
 	}
 
