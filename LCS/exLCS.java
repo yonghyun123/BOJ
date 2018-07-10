@@ -7,8 +7,8 @@ public class exLCS {
 		String input = "ccccccabcd";
 		String input2 = "abce";
 		int ans = 0;
-		//배열 크기는 string이 큰놈으로 잡아야겠다
-		int [][]dp = new int[input.length()+1][input.length()+1];
+		//배열 크기는 각각 string 길이
+		int [][]dp = new int[input.length()+1][input2.length()+1];
 		
 		for(int i = 1; i <= input.length(); i++){
 			for(int j = 1; j <= input2.length(); j++){

@@ -1,4 +1,4 @@
-package boj_기초;
+package LCS;
 
 import java.util.ArrayList;
 import java.util.Scanner;
