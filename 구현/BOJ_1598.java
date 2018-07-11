@@ -17,7 +17,6 @@ public class BOJ_1598 {
 //		System.out.println(leftRight);;
 		System.out.println(topBottom+leftRight);
 	
-	
 		
 	}
 	

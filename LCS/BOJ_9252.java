@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class BOJ_9252 {
 	public static Scanner sc = new Scanner(System.in);
-	
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
