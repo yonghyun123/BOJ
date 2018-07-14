@@ -19,7 +19,6 @@ public class ScanEncript {
 			"0110111",
 			"0001011"
 	};
-	
 	public static void main(String[] args) {
 		hexToBinary.put('0', "0000");
 		hexToBinary.put('1', "0001");
@@ -60,12 +59,13 @@ public class ScanEncript {
 			for(int j = 1, k = 0; j < newStr.length()-1; j++,k++){
 				if(cnt == 4){
 					//원래는 여기서 최대공약수 실행
-					int result = 0;
-					while((result = gcd(cntArr[0],gcd(cntArr[1],gcd(cntArr[2],cntArr[3])))) >= 2){
+				
+					while( gcd(cntArr[0],gcd(cntArr[1],gcd(cntArr[2],cntArr[3]))) >= 2){
 						for(int a = 0; a < cntArr.length; a++){
 							cntArr[a] /= 2;
 						}
 					}
+					
 					j = j-1;
 					cnt = 0;
 					k = 0;

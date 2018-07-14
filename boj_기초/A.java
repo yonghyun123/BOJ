@@ -27,16 +27,29 @@ interface E extends B{
 
 //이걸 꼭 기억하자
 public class A {
+	public static int result = 0;
 	
 	public static void main(String[] args){
 		boolean[] visited = new boolean[5];
 		int[] board = new int[4];
-		test(visited,board);
-		System.out.println(visited[0]+","+ board[0]);
+//		test(visited,board);
+//		System.out.println(visited[0]+","+ board[0]);
+		
+		test2(1);
+		System.out.println(result);
 	}
 	
 	public static void test(boolean[] copy, int[] board){
 		copy[0] = true;
 		board[0]= 100;
+	}
+	
+	public static void test2(int a){
+		result += a;
+		if(result >= 10){
+			return;
+		}
+		
+		test2(a+1);
 	}
 }
