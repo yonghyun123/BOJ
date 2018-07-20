@@ -1,4 +1,4 @@
-package dfsbfs;
+package dfsbfs.dfs;
 
 import java.util.Scanner;
 

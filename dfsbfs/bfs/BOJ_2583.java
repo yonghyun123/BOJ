@@ -1,4 +1,4 @@
-package dfsbfs;
+package dfsbfs.bfs;
 //영역구하기 bfs
 
 import java.util.ArrayList;
