@@ -1,4 +1,4 @@
-package dfsbfs;
+package dfsbfs.bfs;
 // 보물섬
 import java.util.LinkedList;
 import java.util.Queue;
@@ -33,7 +33,6 @@ public class BOJ_2589 {
 		}
 		
 		System.out.println(totalCnt);
-	
 	}
 	
 	public static int bfs(char[][] board, int[]start){
