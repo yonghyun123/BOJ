@@ -4,31 +4,27 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//벽부수고 이동하기
-/*
- * 6 4     벽을 하나까지 부셔가면서 최단거리 찾는 알고리즘
+/* 벽부수고 이동하기 2 
+ * 
+ * 6 4 1   ->벽을 부술 수 있는 갯수가 주어짐 0,0 -> M,N 도착
  * 0100
  * 1110
  * 1000
  * 0000
  * 0111
  * 0000
- * 
  */
-public class BOJ_2206 {
-	
-	
-	
+public class BOJ_14442 {
 	public static Scanner sc = new Scanner(System.in);
-	public static int R,C;
+	public static int R,C,B;
 	public static int[] dRow = {0,1,0,-1};
 	public static int[] dCol = {1,0,-1,0};
 	
-	
-
 	public static void main(String[] args) {
 		 R = sc.nextInt();
 		 C = sc.nextInt();
+		 B = sc.nextInt();
+		 
 		 int result = 0;
 		 int[][] board = new int[R][C];
 		 
@@ -38,20 +34,15 @@ public class BOJ_2206 {
 				 board[i][j] = Character.getNumericValue(tempStr.charAt(j));
 			 }
 		 }
-		 if((result = bfs(board)) == -1){
-			 System.out.println(-1);
-		 } else {
-			 System.out.println(result);
-		 }
 		 
+		  System.out.println(bfs(board));
 	}
-	
 	
 	public static int bfs(int[][] board){
 		Queue<Child> q = new LinkedList<>();
 		//0 일때 벽을 안부심, 1일때 벽을 부심
 		
-		boolean[][][] visited = new boolean[R][C][2];
+		boolean[][][] visited = new boolean[R][C][B+1];
 		visited[0][0][0] = true;
 		
 		q.add(new Child(0,0,1,0));
@@ -78,34 +69,26 @@ public class BOJ_2206 {
 					visited[nextR][nextC][0] = true;
 					q.add(new Child(nextR, nextC, curCnt+1, 0));
 				}
-				// 다음이 벽이면서 부신벽을 지나간 적 없고, 벽을 부순적 없을때, --> 벽을 부심
-				if(board[nextR][nextC] == 1 && !visited[nextR][nextC][1] && curBlock == 0){
-					visited[nextR][nextC][1] = true;
-					q.add(new Child(nextR, nextC, curCnt+1, 1));
+				for(int j = 1; j <= B; j++){
+					// 다음이 벽이면서 부신벽을 지나간 적 없고, 벽을 부순적 없을때, --> 벽을 부심
+					if(board[nextR][nextC] == 1 && !visited[nextR][nextC][j] && curBlock < B){
+						visited[nextR][nextC][j] = true;
+						q.add(new Child(nextR, nextC, curCnt+1, curBlock+1));
+					}
+					
+					if(board[nextR][nextC] == 0 && !visited[nextR][nextC][j] && curBlock == B){
+						visited[nextR][nextC][j] = true;
+						q.add(new Child(nextR, nextC, curCnt+1, B));
+					}
 				}
-				
-				if(board[nextR][nextC] == 0 && !visited[nextR][nextC][1] && curBlock == 1){
-					visited[nextR][nextC][1] = true;
-					q.add(new Child(nextR, nextC, curCnt+1, 1));
-				}
+
+
 				
 				
 			}
 		}	
 		return -1;
 	}
-}
-class Child{
-	public int curR;
-	public int curC;
-	public int curCnt;
-	public int curBlock;
-	
-	public Child(int curR, int curC, int curCnt, int curBlock){
-		this.curR = curR;
-		this.curC = curC;
-		this.curCnt = curCnt;
-		this.curBlock = curBlock;
-	}
+
 }
 
