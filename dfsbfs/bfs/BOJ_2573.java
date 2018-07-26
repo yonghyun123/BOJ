@@ -24,6 +24,8 @@ public class BOJ_2573 {
 	public static void main(String[] args) {
 		R = sc.nextInt();
 		C = sc.nextInt();
+		int result = 0;
+		boolean resultFlag = false;
 		
 		int[][] board = new int[R][C];
 		boolean[][] visited = new boolean[R][C];
@@ -32,19 +34,55 @@ public class BOJ_2573 {
 				board[i][j] = sc.nextInt();
 			}
 		}
-		int[] test = {1,1};
-		bfsMelt(board, visited, test);
-		visited = new boolean[R][C];
-		int[] test2 = {1,2};
-		bfsMelt(board, visited, test2);
+		while(true){
+			int cnt = 0;
+//			
+//			for(int i = 0; i < R; i++){
+//				for(int j = 0; j < C; j++){
+//					System.out.print(board[i][j]);
+//				}
+//				System.out.println();
+//			}
+//			System.out.println();
+			visited = new boolean[R][C];
+			for(int i = 0; i < R; i++){
+				for(int j = 0; j < C; j++){
+					if(!visited[i][j] && board[i][j] != 0){
+						cnt += 1;
+						if(cnt == 2){
+							resultFlag = true;
+							break;
+						}
+						int[] test = {i,j};
+						bfsMelt(board, visited, test);
+						
+					}
+				}
+				if(resultFlag)break;
+			}
+			
+			if(resultFlag){
+				System.out.println(result);
+				break;
+			} else if(isAllMelted(board)){
+				System.out.println(0);
+				break;
+			}
+			result++;
+
+		}
+
+	}
+	
+	public static boolean isAllMelted(int[][] board){
 		for(int i = 0; i < R; i++){
 			for(int j = 0; j < C; j++){
-				System.out.print(board[i][j]);
+				if(board[i][j] != 0){
+					return false;
+				}
 			}
-			System.out.println();
 		}
-		
-		
+		return true;
 	}
 	
 	public static int checkMelt(int[][] board, int r, int c){
