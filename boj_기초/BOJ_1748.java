@@ -14,9 +14,6 @@ public class BOJ_1748 {
 			String tempStr = Integer.toString(i);
 			result += tempStr.length();
 		}
-		
 		System.out.println(result);
-
 	}
-
 }
