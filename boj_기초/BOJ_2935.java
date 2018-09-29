@@ -66,8 +66,5 @@ public class BOJ_2935 {
 		 }
 		 
 		 System.out.println(result);
-		
-		 
 	}
-
 }
