@@ -20,7 +20,6 @@ public class SumOfdivisor {
 		String retCenterStr = new String();
 		int divideLen = inputStr.length() / 2 -1;
 		
-		if(inputStr == null) return null;
 		
 		if(inputStr.length() % 2 == 1){
 			retCenterStr = String.valueOf(inputStr.charAt(inputStr.length() / 2));
